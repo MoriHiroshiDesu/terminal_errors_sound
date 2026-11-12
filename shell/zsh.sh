@@ -7,8 +7,8 @@ terminal_error_sound() {
 
     (( ret == 0 )) && return
 
-    # Diferencia Ctrl+C (SIGINT) de erros normais.
-    if (( ret == 130 )); then
+    # Diferencia Ctrl+C (SIGINT) e Ctrl+Z (SIGSTOP) de erros normais.
+    if (( ret == 130 || ret == 148)); then
         event="INTERRUPT"
         dir="$HOME/.terminal-error-sounds/sounds/interrupt"
     else
